@@ -29,7 +29,16 @@
   cursor: pointer; }
 
 .header-text {
-  font-family: "carbon"; }
+  font-family: "Roboto"; }
+
+.logo-s {
+  height: 50px; }
+
+.logo-m {
+  height: 150px; }
+
+.logo-l {
+  height: 300px; }
 
 body {
   margin: 0;
@@ -42,6 +51,6 @@ html {
 #root {
   width: 100vw;
   min-height: 100vh;
-  background-color: #222222; }
+  background-color: #00482b; }
 
 /*# sourceMappingURL=main.css.map */

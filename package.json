@@ -16,6 +16,7 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.9",
     "@types/enzyme": "^3.9.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "20.0.8",
@@ -114,6 +115,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "node-notifier": "^5.4.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "redux-devtools-extension": "^2.13.8"
   }
 }

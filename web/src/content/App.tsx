@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { IMapStateToPropsApp, IMapDispatchToPropsApp } from './ConnectedApp'
+import Header from './Header/Header'
 
 
 interface IApp extends IMapStateToPropsApp, IMapDispatchToPropsApp {}
@@ -7,11 +8,7 @@ interface IApp extends IMapStateToPropsApp, IMapDispatchToPropsApp {}
 const App = (props: IApp) => {
     return (
         <div className='App'>
-            <div className='App-splash-logo'>
-               
-                <h2 className='header-text'>Developer Club</h2>
-           
-            </div>
+            <Header />
         </div>
     )
 }

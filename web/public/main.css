@@ -40,6 +40,20 @@
 .logo-l {
   height: 300px; }
 
+header {
+  top: 0;
+  height: 70px;
+  width: 100vw;
+  background-color: #00482b;
+  position: absolute; }
+  header img {
+    float: left;
+    margin: 10px; }
+  header #header-button {
+    float: right;
+    margin: 10px;
+    margin-right: 5px; }
+
 body {
   margin: 0;
   padding: 0;
@@ -51,6 +65,6 @@ html {
 #root {
   width: 100vw;
   min-height: 100vh;
-  background-color: #00482b; }
+  background-color: #222222; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,19 @@
+header {
+    top: 0;
+    height: 70px;
+    width: 100vw;
+    background-color: $dashG-green;
+    position: absolute;
+
+    img {
+       float: left;
+       margin: 10px;
+    }
+
+    #header-button {
+        float: right;
+        margin: 10px;
+        margin-right: 5px;
+        
+    }
+}

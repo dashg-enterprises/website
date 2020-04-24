@@ -1,21 +1,24 @@
 import * as React from 'react'
 
-const logo = './assets/images/logo.png'
+const nameLogo = './assets/images/nameLogo.png'
+const boxLogo = './assets/images/boxLogo.png'
 
 interface ILogoSize {
-    logoSize?: 's' | 'm' | 'l';
+    type: 'name' |'box';
+    logoSize?: 's' | 'm' | 'l' | 'xl';
 }
 
 
 const Logo = (props: ILogoSize) => {
-    const { logoSize } = props
+    const { logoSize, type } = props
 
-    const logoClass = logoSize && `logo-${logoSize}`
+    const logoClass = logoSize && `${type}-logo-${logoSize}`
+    const logo = type === 'name' ? nameLogo : boxLogo
 
     return (
         <img
             src={logo}
-            className={logoClass}
+            className={`${logoClass}`}
         />
     )
 }

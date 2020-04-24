@@ -1,16 +1,40 @@
 import * as React from 'react'
-import Logo from '../Logo/Logo'
-import HamburgerMenu from '../reusableComponents/HamburgerMenu/HamburgerMenu'
+import { useRef, useEffect, useState } from 'react'
+import SmallHeader from './SmallHeader'
+import LandingHeader from './LandingHeader'
 
 const Header = () => {
+
+    const [header, setHeader] = useState('landing')
+    const [hasScrolled, setHasScrolled] = useState(false)
+    const imageContainer = useRef(null)
+
+    useEffect(() => {
+
+        addEventListener('scroll', () => {
+            if (window.scrollY >= imageContainer.current.offsetTop) {
+                setHeader('small')
+                setHasScrolled(true)
+            } 
+            
+            if (window.scrollY < imageContainer.current.offsetTop) {
+                setHeader('landing')
+            }
+        }),
+
+        
+        () => {
+            removeEventListener('scroll', () => null)
+        }
+    }, [])
+
+
     return (
-        <header>
-            <Logo logoSize='s' />
-            <HamburgerMenu 
-                menuId={'header-button'} 
-                menuItems={[]}
-            />
-        </header>
+        <>
+            <LandingHeader hide={header === 'small'} imageContainer={imageContainer}/>
+            {hasScrolled && <SmallHeader animation={header}/>}
+        </>
+
     )
 }
 

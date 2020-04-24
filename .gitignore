@@ -1,1 +1,6 @@
 node_modules/
+.DS_Store
+
+web/public/main.css.map
+web/public/main.css
+web/public/bundle.js

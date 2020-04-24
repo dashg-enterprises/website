@@ -16,6 +16,7 @@
   text-align: center;
   box-sizing: border-box;
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -31,33 +32,90 @@
 .header-text {
   font-family: "Roboto"; }
 
-.logo-s {
+.name-logo-s {
   height: 50px; }
 
-.logo-m {
+.name-logo-m {
   height: 150px; }
 
-.logo-l {
+.name-logo-l {
   height: 300px; }
 
-header {
+.name-logo-xl {
+  height: 400px; }
+
+.box-logo-s {
+  height: 100px; }
+
+.box-logo-m {
+  height: 250px; }
+
+.box-logo-l {
+  height: 350px; }
+
+.box-logo-xl {
+  height: 500px; }
+
+#small-header {
   top: 0;
   height: 70px;
   width: 100vw;
   background-color: #00482b;
-  position: absolute; }
-  header img {
+  position: fixed; }
+  #small-header img {
     float: left;
     margin: 10px; }
-  header #header-button {
+  #small-header #header-button {
     float: right;
     margin: 10px;
     margin-right: 5px; }
 
+.small {
+  animation-duration: .25s;
+  animation-name: slidein; }
+
+.landing {
+  animation-duration: .25s;
+  animation-name: slideout;
+  animation-fill-mode: forwards; }
+
+#landing-header {
+  top: 0;
+  width: 100vw;
+  height: 60vh;
+  position: absolute;
+  background-color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+@keyframes slidein {
+  from {
+    margin: auto;
+    width: 350px; }
+  to {
+    width: 100vw; } }
+
+@keyframes slideout {
+  0% {
+    width: 100vw;
+    display: block; }
+  70% {
+    margin: auto;
+    width: 350px;
+    z-index: 0;
+    display: block; }
+  100% {
+    margin: auto;
+    top: 15vh;
+    width: 0px;
+    z-index: 0; } }
+
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background-color: #222222; }
 
 html {
   width: 100vw; }

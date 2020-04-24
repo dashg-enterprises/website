@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { IMapStateToPropsApp, IMapDispatchToPropsApp } from './ConnectedApp'
 import Header from './Header/Header'
+import AboutUs from './AboutUs/AboutUs'
 
 
-interface IApp extends IMapStateToPropsApp, IMapDispatchToPropsApp {}
-
-const App = (props: IApp) => {
+const App = () => {
     return (
         <div className='App'>
             <Header />
+            <AboutUs />
         </div>
     )
 }

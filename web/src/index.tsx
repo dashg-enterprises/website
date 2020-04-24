@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import ConnectedApp from './content/ConnectedApp'
+import App from './content/App'
 import store from './redux/store/store'
 import history from './redux/store/history'
 import { ConnectedRouter } from 'react-router-redux'
@@ -15,7 +15,7 @@ ReactDOM.render(
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <ConnectedRouter history={history}>
-                    <Route path='/' component={ConnectedApp}/>
+                    <Route path='/' component={App}/>
                 </ConnectedRouter>
             </ThemeProvider>
             

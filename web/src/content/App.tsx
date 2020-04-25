@@ -7,7 +7,11 @@ const App = () => {
     return (
         <div className='App'>
             <Header />
-            <AboutUs />
+            <div style={{display: 'block', width: `100vw`,}}>
+                <AboutUs />
+                <AboutUs />
+
+            </div>
            
         </div>
     )

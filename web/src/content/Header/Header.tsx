@@ -12,12 +12,12 @@ const Header = () => {
     useEffect(() => {
 
         addEventListener('scroll', () => {
-            if (window.scrollY >= imageContainer.current.offsetTop) {
+            if (window.scrollY >= imageContainer.current.offsetTop + imageContainer.current.offsetHeight - 70) {
                 setHeader('small')
                 setHasScrolled(true)
             } 
             
-            if (window.scrollY < imageContainer.current.offsetTop) {
+            if (window.scrollY < imageContainer.current.offsetTop + imageContainer.current.offsetHeight - 70) {
                 setHeader('landing')
             }
         }),

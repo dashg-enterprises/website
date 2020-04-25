@@ -4,6 +4,7 @@
     width: 100vw;
     background-color: $dashG-green;
     position: fixed;
+    z-index: 5;
 
     img {
         float: left;
@@ -68,7 +69,7 @@
 
     100% {
         margin: auto;
-        top: 15vh;
+        // top: 0vh;
         width: 0px;
         z-index: 0;
 

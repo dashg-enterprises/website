@@ -31,11 +31,11 @@
 .header-text {
   font-family: "Roboto"; }
 
-h1, h2, h3, h4, h5, h6, p, ul, li, span {
-  color: white; }
+h1, h2, h3, h4, h5, h6, p, ul, li, span, div {
+  color: white;
+  font-family: Roboto !important; }
 
-p {
-  font-size: 20px;
+h6 {
   text-align: left; }
 
 .name-logo-s {
@@ -95,6 +95,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center; }
+  @media screen and (orientation: landscape) and (max-width: 900px) {
+    #landing-header {
+      height: 90vh; } }
 
 @keyframes slidein {
   from {
@@ -127,6 +130,23 @@ p {
   @media screen and (max-width: 680px) {
     #about-us {
       max-width: 90%; } }
+  @media screen and (orientation: landscape) and (max-width: 900px) {
+    #about-us {
+      margin-top: 100vh; } }
+  #about-us h6 {
+    margin: 10px; }
+    #about-us h6:first-of-type {
+      margin-top: 10vh; }
+  #about-us .about-text {
+    animation: fadeIn 2.5s forwards; }
+  #about-us .hide-text {
+    opacity: 0.1; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.1; }
+  to {
+    opacity: 1; } }
 
 body {
   margin: 0;

@@ -5,7 +5,7 @@ const boxLogo = './assets/images/boxLogo.png'
 
 interface ILogoSize {
     type: 'name' |'box';
-    logoSize?: 's' | 'm' | 'l' | 'xl';
+    logoSize?: 'xs' | 's' | 'm' | 'l' | 'xl';
 }
 
 

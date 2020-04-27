@@ -38,6 +38,9 @@ h1, h2, h3, h4, h5, h6, p, ul, li, span, div {
 h6 {
   text-align: left; }
 
+.name-logo-xs {
+  height: 30px; }
+
 .name-logo-s {
   height: 50px; }
 
@@ -49,6 +52,9 @@ h6 {
 
 .name-logo-xl {
   height: 400px; }
+
+.box-logo-xs {
+  height: 75px; }
 
 .box-logo-s {
   height: 100px; }
@@ -119,6 +125,28 @@ h6 {
     margin: auto;
     width: 0px;
     z-index: 0; } }
+
+#footer {
+  background-color: #222222;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  #footer img {
+    vertical-align: middle; }
+  #footer #contact {
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    text-align: left;
+    margin-left: 10px; }
+    #footer #contact span {
+      display: block; }
+    #footer #contact a {
+      all: unset;
+      color: white;
+      display: block;
+      cursor: pointer; }
 
 #about-us {
   margin: auto;

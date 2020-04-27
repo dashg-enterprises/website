@@ -6,7 +6,7 @@ interface IJoin {
 
 const Join = (props: IJoin) => {
     return (
-        <div style={{backgroundColor: 'grey', height: 2000}}>
+        <div style={{backgroundColor: 'white', height: 1000}}>
             questions for joining 
         
         </div>

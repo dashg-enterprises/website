@@ -2,6 +2,7 @@ import * as React from 'react'
 import Header from './Header/Header'
 import AboutUs from './AboutUs/AboutUs'
 import Join from './Join/Join'
+import Footer from './Footer/Footer'
 
 const App = () => {
     return (
@@ -10,6 +11,7 @@ const App = () => {
             <div style={{display: 'block', width: `100vw`}}>
                 <AboutUs />
                 <Join />
+                <Footer />
             </div>
            
         </div>

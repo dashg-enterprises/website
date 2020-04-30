@@ -42,7 +42,7 @@
     "inversify": "^4.13.0",
     "inversify-express-utils": "^6.3.2",
     "jest": "^22.4.4",
-    "jquery": "3.4.0",
+    "jquery": "3.5.0",
     "localenvify": "^1.0.1",
     "moment": "2.19.3",
     "node-sass": "^4.13.1",

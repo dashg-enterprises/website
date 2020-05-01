@@ -31,7 +31,7 @@
 .header-text {
   font-family: "Roboto"; }
 
-h1, h2, h3, h4, h5, h6, p, ul, li, span, div {
+h1, h2, h3, h4, h5, h6, p, ul, li {
   color: white;
   font-family: Roboto !important; }
 
@@ -176,6 +176,15 @@ h6 {
     opacity: 0.1; }
   to {
     opacity: 1; } }
+
+#form-container {
+  color: #222222 !important;
+  background-color: white;
+  display: block;
+  padding-top: 20px;
+  touch-action: manipulation; }
+  #form-container h4, #form-container div {
+    color: #222222 !important; }
 
 body {
   margin: 0;

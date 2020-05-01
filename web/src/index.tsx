@@ -2,6 +2,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './content/App'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import * as MomentUtils from '@date-io/moment';
 import store from './redux/store/store'
 import history from './redux/store/history'
 import { ConnectedRouter } from 'react-router-redux'
@@ -14,9 +16,11 @@ ReactDOM.render(
     (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
                 <ConnectedRouter history={history}>
                     <Route path='/' component={App}/>
                 </ConnectedRouter>
+                </MuiPickersUtilsProvider>
             </ThemeProvider>
             
         </Provider>

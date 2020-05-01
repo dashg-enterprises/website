@@ -10,7 +10,7 @@ const Section = (props: ISection) => {
     const {title, children} = props
     return (
         <div>
-            <Typography variant='h3'>{title}</Typography>
+            <Typography variant='h4'>{title}</Typography>
             {children}
         </div>
     )

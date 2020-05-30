@@ -1,0 +1,82 @@
+#small-header {
+    top: 0;
+    height: 70px;
+    width: 100vw;
+    background-color: $dashG-green;
+    position: fixed;
+    z-index: 5;
+
+    img {
+        float: left;
+        margin: 10px;
+    }
+
+    #header-button {
+        float: right;
+        margin: 10px;
+        margin-right: 5px;
+    }
+}
+
+.small {
+    animation-duration: .25s;
+    animation-name: slidein;
+}
+
+.landing {
+    animation-duration: .15s;
+    animation-name: slideout;
+    animation-fill-mode: forwards;
+}
+
+#landing-header {
+    top: 0;
+    width: 100vw;
+    height: 60vh;
+    position: absolute;
+    background-color: $dashG-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (orientation:landscape) and (max-width: 900px) {
+        height: 90vh;
+
+    }
+
+}
+
+
+@keyframes slidein {
+    from {
+    margin: auto;
+    width: 350px; 
+    }
+
+    to {
+    width: 100vw;
+    }
+}
+
+@keyframes slideout {
+    0% {
+        width: 100vw;
+        display: block;
+    }
+
+    70% {
+        margin: auto;
+        width: 350px; 
+        z-index: 0;
+        display: block;
+
+    }
+
+    100% {
+        margin: auto;
+        // top: 0vh;
+        width: 0px;
+        z-index: 0;
+
+    }
+}

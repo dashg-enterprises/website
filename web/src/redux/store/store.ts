@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'redux'
-import logger from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
 import history from './history'
@@ -12,7 +12,7 @@ const epicMiddleware = createEpicMiddleware()
 
 let middleware
 if (process.env.NODE_ENV !== 'production') {
-    middleware = applyMiddleware(epicMiddleware, routeMiddleware, promise(), thunk, logger)
+    middleware = composeWithDevTools(applyMiddleware(epicMiddleware, routeMiddleware, promise(), thunk))
 } else {
     middleware = applyMiddleware(epicMiddleware, routeMiddleware, promise(), thunk)
 }

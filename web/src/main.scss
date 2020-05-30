@@ -3,13 +3,23 @@
 @import 'sass-helpers/fonts';
 @import 'sass-helpers/variables';
 @import 'sass-helpers/mixins';
+@import 'sass-helpers/theme_variables';
 
 @import 'content/App';
+
+@import 'content/reusableComponents/reusableComponents';
+
+@import 'content/Logo/logo';
+@import 'content/Header/header';
+@import 'content/Footer/footer';
+@import 'content/AboutUs/aboutus';
+@import 'content/Join/join';
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: $dashG-black;
 }
 
 
@@ -22,5 +32,5 @@ html {
 
   width: 100vw;
   min-height: 100vh;
-  background-color: $black;
+  background-color: $dashG-black;
 }

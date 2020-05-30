@@ -1,21 +1,21 @@
 import * as React from 'react'
-import { IMapStateToPropsApp, IMapDispatchToPropsApp } from './ConnectedApp'
+import Header from './Header/Header'
+import AboutUs from './AboutUs/AboutUs'
+import Join from './Join/Join'
+import Footer from './Footer/Footer'
 
-const reactLogo = './assets/images/reactReduxTS.png'
-
-interface IApp extends IMapStateToPropsApp, IMapDispatchToPropsApp {}
-
-const App = (props: IApp) => {
+const App = () => {
     return (
         <div className='App'>
-            <div className='App-splash-logo'>
-                <img
-                    src={reactLogo}
-                    className={`header-logo`}
+            <Header />
+            <div style={{display: 'block', width: `100vw`}}>
+                <AboutUs />
+                <Join 
+                    submitJsonPayload={console.log}
                 />
-                <h2 className='header-text'>here goes nothing....</h2>
-           
+                <Footer />
             </div>
+           
         </div>
     )
 }

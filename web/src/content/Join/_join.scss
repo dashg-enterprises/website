@@ -1,13 +1,13 @@
-#form-container {
+#join {
     color: $dashG-black !important;
     background-color: white;
     display: block;
-    padding-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     touch-action: manipulation;
 
-    h4, div {
-        
-        color: $dashG-black !important;
 
+    h4, div {
+        color: $dashG-black;
     }
 }

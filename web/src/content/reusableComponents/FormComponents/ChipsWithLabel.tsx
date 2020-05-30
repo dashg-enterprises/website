@@ -7,8 +7,15 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: `10px`,
         marginLeft: `-15px`,
     },
-    chip: {
+    chipPrimary: {
+        color: 'white !important',
         margin: '2px',
+        fontWeight: 'bold',
+    },
+    chipDefault: {
+        color: '#222222 !important',
+        margin: '2px',
+        fontWeight: 'bold',
     },
     [`@media (max-width: 500px)`]: {
         inputLabel: {
@@ -40,7 +47,7 @@ const ChipsWithLabel = (props: IChipsWithLabel) => {
         {list.map(val =>
             <Chip
                 key={val}
-                className={classes.chip}
+                className={selectedList.includes(val) ? classes.chipPrimary : classes.chipDefault}
                 label={val} 
                 clickable
                 onClick={() => addOrRemoveFromList(val)}

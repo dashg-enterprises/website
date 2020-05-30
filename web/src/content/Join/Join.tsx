@@ -1,12 +1,15 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { TextField, Grid, MenuItem } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core'
 import * as moment from 'moment'
-import { makeStyles } from '@material-ui/core/styles';
-import Section from '../reusableComponents/Section/Section';
-import ChipsWithLabel from '../reusableComponents/FormComponents/ChipsWithLabel';
-import SliderWithLabel from '../reusableComponents/FormComponents/SliderWithLabel';
-import { DatePicker } from '@material-ui/pickers';
+import { makeStyles } from '@material-ui/core/styles'
+import Section from '../reusableComponents/Section/Section'
+import CodeProficiency from './Questions/CodeProficiency'
+import BusinessQuestions from './Questions/BusinessQuestions'
+import RecruiterQuestions from './Questions/RecruiterQuestions'
+import StudentQuestions from './Questions/StudentQuestions'
+import EmploymentQuestions from './Questions/EmploymentQuestions'
+import BasicQuestions from './Questions/BasicQuestions'
 
 const useStyles = makeStyles((theme) => ({
     textBox: {
@@ -50,6 +53,10 @@ const Join = (props: IJoin) => {
 
     const classes = useStyles()
 
+    // **********************************************************************************************
+    // BASIC QUESTION HOOKS    
+    // **********************************************************************************************
+
     const [name, setName] = useState('')
     const [nameValid, setNameValid] = useState(true)
     
@@ -84,6 +91,10 @@ const Join = (props: IJoin) => {
         setIAmAValid(isValid)
     }
 
+    // **********************************************************************************************
+    // EMPLOYMENT QUESTION HOOKS 
+    // **********************************************************************************************
+
     const [amEmployed, setAmEmployed] = useState('')
     const [amEmployedValid, setAmEmployedValid] = useState(true)
     const employedOptions = [
@@ -104,6 +115,93 @@ const Join = (props: IJoin) => {
         const isValid = !!value.length
         setJobTitleValid(isValid)
     }
+
+
+    // **********************************************************************************************
+    // STUDENT QUESTIONS HOOKS    
+    // **********************************************************************************************
+
+    const [selectedDate, handleDateChange] = useState(moment());
+
+    const [major, setMajor] = useState('')
+    const [majorValid, setMajorValid] = useState(true)
+    
+    const validateMajor = (value) => {
+        const isValid = !!value.length
+        setMajorValid(isValid)
+    }  
+    
+    // **********************************************************************************************
+    // RECRUITER QUESTIONS HOOKS    
+    // **********************************************************************************************
+
+    const [recruitFor, setRecruitFor] = useState('')
+
+    const candidateText = 'for (a) candidate(s)'
+    const techProductText = 'for (a) tech product(s)'
+    const teamMemberText = 'to add team members'
+
+
+    const [recruitingFor, setRecruitingFor] = useState([])
+    const recruitingForList = [ 
+        candidateText, 'to staying in the loop',
+    ]
+
+    const recruitingForListCompany = [
+        techProductText, teamMemberText,
+    ]
+
+    recruitingForList.push('something else')
+    recruitingForListCompany.push('more information')
+
+    const addOrRemoveRecruitingForFromList = (val) => {
+        const reasons = [...recruitingFor]
+
+        if (reasons.includes(val)) {
+            const index = reasons.indexOf(val);
+            if (index > -1) {
+                reasons.splice(index, 1);
+            }
+        }
+        else {
+            reasons.push(val)
+        }
+        setRecruitingFor(reasons)
+    }
+    
+    // **********************************************************************************************
+    // BUSINESS QUESTIONS HOOKS    
+    // **********************************************************************************************
+
+    const [companyIs, setCompanyIs] = useState('')
+
+    const [techNeed, setTechNeed] = useState([])
+    const techNeeds = ['Website', 'Database', 'API Services', 'Mobile']
+
+    techNeeds.push('Other')
+
+    const addOrRemoveTechNeedsFromList = (val) => {
+        const need = [...techNeed]
+
+        if (need.includes(val)) {
+            const index = need.indexOf(val);
+            if (index > -1) {
+                need.splice(index, 1);
+            }
+        }
+        else {
+            need.push(val)
+        }
+        setTechNeed(need)
+    }
+
+
+    const [moreCompanyDetails, setMoreCompanyDetails] = useState('')
+
+    // **********************************************************************************************
+    // CODE PROFICIENCY HOOKS
+    // **********************************************************************************************
+
 
     const [codeProficiency, setCodeProficiency] = useState(0)
     const proficiencyLevels = ['None', 'Novice', 'Intermediate', 'Advanced', 'Master']
@@ -156,14 +254,15 @@ const Join = (props: IJoin) => {
         setTools(toolsClone)
     }
 
+    // **********************************************************************************************
+    // HELPERS
+    // **********************************************************************************************
 
-    const [selectedDate, handleDateChange] = useState(moment());
-
-
-    // *******************************************
 
     const isTech =  iAmA !== 'recruiter' && iAmA !== 'business' && iAmA !== ''
     const isStudent =  iAmA === 'student'
+    const isRecruiter =  iAmA === 'recruiter'
+    const isBusiness =  iAmA === 'business'
 
     const setValue = (setter) => (event) => {
         setter(event.target.value)
@@ -174,172 +273,108 @@ const Join = (props: IJoin) => {
     }
     
     return (
-        <div id='form-container'>
+        <div id='join'>
             <Section title={'Tell us about yourself!'}>
                 <Grid
+                    id='question-container'
                     container
                     direction="column"
                     alignItems="center"
                 >
-                <TextField
-                    id="name-helperText"
-                    className={classes.textBox}
-                    label="Name"
-                    value={name}
-                    onChange={setValue(setName)}
-                    onBlur={validate(validateName)}
-                    helperText={nameValid ? "" : "Name cannot be blank"}
-                    variant="outlined"
-                    error={!nameValid}
-                    fullWidth={true}
-                />
-                <TextField
-                    id="email-helperText"
-                    className={classes.textBox}
-                    label="Email"
-                    value={email}
-                    onChange={setValue(setEmail)}
-                    onBlur={validate(validateEmail)}
-                    helperText={emailValid ? "Your email is safe with us" : "Email must be valid"}
-                    variant="outlined"
-                    error={!emailValid}
-                />
-                <TextField
-                    id="iAmA-helperText"
-                    className={classes.textBox}
-                    label={iAmA === 'other' ? "I am an" : "I am a"}
-                    value={iAmA}
-                    onChange={setValue(setIAmA)}
-                    onBlur={validate(validateIAmA)}
-                    helperText={iAmAValid ? "Choose the option that best describes you." : "An option must be selected"}
-                    variant="outlined"
-                    error={!iAmAValid}
-                    select={true}
-                >
-                    {amOptions.map(option => 
-                        <MenuItem key={option.value} value={option.value} className={classes.dropdownItem}>
-                            {option.label}
-                        </MenuItem>    
-                    )}
-                </TextField>
-                {isTech && 
-                    <TextField
-                        id="amEmployed-helperText"
-                        className={classes.textBox}
-                        label={"I am"}
-                        value={amEmployed}
-                        onChange={setValue(setAmEmployed)}
-                        onBlur={validate(validateAmEmployed)}
-                        helperText={amEmployedValid ? "" : "An option must be selected"}
-                        variant="outlined"
-                        error={!amEmployedValid}
-                        select={true}
-                    >
-                        {employedOptions.map(option => 
-                            <MenuItem key={option.value} value={option.value} className={classes.dropdownItem}>
-                                {option.label}
-                            </MenuItem>    
-                        )}
-                    </TextField>
-                }
-                {(amEmployed === 'employed' && isTech) && 
-                    <TextField
-                        id="jobTitle-helperText"
-                        className={classes.textBox}
-                        label="What is your job title?"
-                        value={jobTitle}
-                        onChange={setValue(setJobTitle)}
-                        onBlur={validate(validateJobTitle)}
-                        helperText={jobTitleValid ? "" : ""}
-                        variant="outlined"
-                        error={!jobTitleValid}
-                    />
-                }
-                {(isTech) &&
-                    <div className={classes.container}>
-                        <SliderWithLabel
-                            id={'code proficiency slider'}
-                            inputLabel={`Code Proficiency: ${proficiencyLevels[codeProficiency]}`}
-                            step={1}
-                            min={0}
-                            max={4}
-                            value={codeProficiency}
-                            setValue={setCodeProficiency}
+                    {true && <>
+                        <BasicQuestions
+                            classes={classes}
+                            setValue={setValue}
+                            setName={setName}
+                            name={name}
+                            validate={validate}
+                            validateName={validateName}
+                            nameValid={nameValid}
+                            email={email}
+                            setEmail={setEmail}
+                            validateEmail={validateEmail}
+                            emailValid={emailValid}
+                            iAmA={iAmA}
+                            setIAmA={setIAmA}
+                            validateIAmA={validateIAmA}
+                            iAmAValid={iAmAValid}
+                            amOptions={amOptions}
                         />
-                    </div>
-                }
-                {isStudent && 
-                    <DatePicker
-                        autoOk                       
-                        className={classes.textBox}
-                        variant="inline"
-                        inputVariant="outlined"
-                        openTo="year"
-                        views={["year", "month"]}
-                        label="Graduation Date"
-                        helperText="Choose your approximation graduation month and year"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                    />
-
-                }
-                {codeProficiency > 0 && 
-                    <>
-                        <div className={classes.container}>
-                            <ChipsWithLabel 
-                                id='lang-chips-with-label'
-                                inputLabel='Languages'
-                                list={languagesList}
-                                selectedList={languages}
-                                addOrRemoveFromList={addOrRemoveLanguagesFromList}
-
-                            />
-                        </div>
-                        <div className={classes.container}>
-                            <ChipsWithLabel 
-                                id='tool-chips-with-label'
-                                inputLabel='Tools'
-                                list={toolsList}
-                                selectedList={tools}
-                                addOrRemoveFromList={addOrRemoveToolsFromList}
-
-                            />
-                        </div>
-                    </>
-                }
-                
+                        <EmploymentQuestions
+                            isTech={isTech}
+                            isStudent={isStudent}
+                            classes={classes}
+                            amEmployed={amEmployed}
+                            setValue={setValue}
+                            setAmEmployed={setAmEmployed}
+                            validate={validate}
+                            validateAmEmployed={validateAmEmployed}
+                            amEmployedValid={amEmployedValid}
+                            employedOptions={employedOptions}
+                            jobTitle={jobTitle}
+                            setJobTitle={setJobTitle}
+                            validateJobTitle={validateJobTitle}
+                            jobTitleValid={jobTitleValid}
+                        />
+                        <StudentQuestions
+                            isStudent={isStudent}
+                            classes={classes}
+                            selectedDate={selectedDate}
+                            handleDateChange={handleDateChange}
+                            major={major}
+                            setValue={setValue}
+                            setMajor={setMajor}
+                            validate={validate}
+                            validateMajor={validateMajor}
+                            majorValid={majorValid}
+                        />
+                        <RecruiterQuestions 
+                            classes={classes}
+                            isRecruiter={isRecruiter}
+                            recruitFor={recruitFor}
+                            setValue={setValue}
+                            setRecruitFor={setRecruitFor}
+                            recruitingFor={recruitingFor}
+                            recruitingForList={recruitingForList}
+                            addOrRemoveRecruitingForFromList={addOrRemoveRecruitingForFromList}
+                        />
+                        <BusinessQuestions
+                            isBusiness={isBusiness}
+                            classes={classes}
+                            companyIs={companyIs}
+                            setCompanyIs={setCompanyIs}
+                            setValue={setValue}
+                            recruitingForListCompany={recruitingForListCompany}
+                            recruitingFor={recruitingFor}
+                            addOrRemoveRecruitingForFromList={addOrRemoveRecruitingForFromList}
+                            techProductText={techProductText}
+                            techNeed={techNeed}
+                            techNeeds={techNeeds}
+                            addOrRemoveTechNeedsFromList={addOrRemoveTechNeedsFromList}
+                            teamMemberText={teamMemberText}
+                            moreCompanyDetails={moreCompanyDetails}
+                            setMoreCompanyDetails={setMoreCompanyDetails}
+                        />
+                        <CodeProficiency
+                            isTech={isTech}
+                            isRecruiter={isRecruiter && recruitingFor.includes(candidateText)}
+                            classes={classes}
+                            proficiencyLevels={proficiencyLevels}
+                            codeProficiency={codeProficiency}
+                            setCodeProficiency={setCodeProficiency}
+                            languages={languages}
+                            languagesList={languagesList}
+                            addOrRemoveLanguagesFromList={addOrRemoveLanguagesFromList}
+                            tools={tools}
+                            toolsList={toolsList}
+                            addOrRemoveToolsFromList={addOrRemoveToolsFromList}
+                        />
+                    </>}
                 </Grid>
             </Section>
-           
-
             <div>
-            languages - chips choose many
-
-            tools - chips choose many
-
-
-            I recruit for - text input
-
-            I - am looking for a candidate / want to stay in the loop - chips choose 1
-
-            what skills are you looking for (reuse languages and tools)
-
-            I graduate - mth dropdown, year dropdown
-
-            My major is - text input
-
-
-            I am - looking for a tech product / looking to add members to my team / interested in what you are doing = chips chose 1
-
-            What kind of tech product / employee are you lookng for (chips, choose manu)
-
-            provide more details about the product/employee you are looking for 
-            
-            </div>
-
-
         </div>
-    )
+    </div>)
 }
 
 export default Join

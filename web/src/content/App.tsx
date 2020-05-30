@@ -10,7 +10,9 @@ const App = () => {
             <Header />
             <div style={{display: 'block', width: `100vw`}}>
                 <AboutUs />
-                <Join />
+                <Join 
+                    submitJsonPayload={console.log}
+                />
                 <Footer />
             </div>
            

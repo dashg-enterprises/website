@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
     dropdownItem: {
         color: '#222222'
     },
+
+    buttonGrid: {
+        marginTop: `20px`,
+        width: '500px',
+    },
     [`@media (max-width: 500px)`]: {
         textBox: {
 
@@ -41,17 +46,22 @@ const useStyles = makeStyles((theme) => ({
         containerWithoutMargin: {
             width: '80%',
 
+        },
+        buttonGrid: {
+            width: '80%',
+
         }
     }
 }))
 
 interface IJoin {
-
+    submitJsonPayload: (payload: object) => void;
 }
 
 const Join = (props: IJoin) => {
 
     const classes = useStyles()
+    const { submitJsonPayload } = props
 
     // **********************************************************************************************
     // BASIC QUESTION HOOKS    
@@ -144,7 +154,7 @@ const Join = (props: IJoin) => {
 
     const [recruitingFor, setRecruitingFor] = useState([])
     const recruitingForList = [ 
-        candidateText, 'to staying in the loop',
+        candidateText, 'to stay in the loop',
     ]
 
     const recruitingForListCompany = [
@@ -260,9 +270,16 @@ const Join = (props: IJoin) => {
 
 
     const isTech =  iAmA !== 'recruiter' && iAmA !== 'business' && iAmA !== ''
+    const isNotScrum =  iAmA !== 'sm' &&  iAmA !== 'po'
     const isStudent =  iAmA === 'student'
     const isRecruiter =  iAmA === 'recruiter'
     const isBusiness =  iAmA === 'business'
+
+    let showButton = name && nameValid && email && emailValid && iAmA && iAmAValid
+
+    // if (isStudent) showButton = showButton && major && majorValid
+    if (isRecruiter) showButton = showButton && (recruitingFor.length > 0)
+    if (isBusiness) showButton = showButton && (recruitingFor.length > 0)
 
     const setValue = (setter) => (event) => {
         setter(event.target.value)
@@ -270,6 +287,25 @@ const Join = (props: IJoin) => {
     
     const validate = (validator) => (event) => {
         validator(event.target.value)
+    }
+
+    const jsonPayload = {
+        name, 
+        email,
+        iAmA,
+        amEmployed, 
+        jobTitle,
+        graduationDate: selectedDate,
+        major,
+        recruitFor,
+        recruitingFor,
+        companyIs,
+        techNeed,
+        moreCompanyDetails,
+        codeProficiency,
+        languages,
+        tools,
+
     }
     
     return (
@@ -281,7 +317,7 @@ const Join = (props: IJoin) => {
                     direction="column"
                     alignItems="center"
                 >
-                    {true && <>
+                    <>
                         <BasicQuestions
                             classes={classes}
                             setValue={setValue}
@@ -302,6 +338,7 @@ const Join = (props: IJoin) => {
                         />
                         <EmploymentQuestions
                             isTech={isTech}
+                            isNotScrum={isNotScrum}
                             isStudent={isStudent}
                             classes={classes}
                             amEmployed={amEmployed}
@@ -356,7 +393,7 @@ const Join = (props: IJoin) => {
                             setMoreCompanyDetails={setMoreCompanyDetails}
                         />
                         <CodeProficiency
-                            isTech={isTech}
+                            isTech={isTech && !isBusiness}
                             isRecruiter={isRecruiter && recruitingFor.includes(candidateText)}
                             classes={classes}
                             proficiencyLevels={proficiencyLevels}
@@ -369,7 +406,23 @@ const Join = (props: IJoin) => {
                             toolsList={toolsList}
                             addOrRemoveToolsFromList={addOrRemoveToolsFromList}
                         />
-                    </>}
+                    </>
+                    {showButton && <Grid
+                        className={classes.buttonGrid}
+                    >
+
+                        <Button
+                            variant="contained" 
+                            color="primary"
+                            size="large"
+                            fullWidth={true}
+                            onClick={() => submitJsonPayload(jsonPayload)}
+                        >
+                            Submit
+
+                        </Button>
+                    </Grid>}
+
                 </Grid>
             </Section>
             <div>

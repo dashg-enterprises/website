@@ -3,7 +3,7 @@ import { TextField, MenuItem } from '@material-ui/core'
     
 
 const EmploymentQuestions = (props) => {
-    const { isTech, isStudent, classes, amEmployed, setValue,
+    const { isTech, isNotScrum, isStudent, classes, amEmployed, setValue,
             setAmEmployed, validate, validateAmEmployed, amEmployedValid,
             employedOptions, jobTitle, setJobTitle, validateJobTitle, jobTitleValid
     } = props
@@ -29,7 +29,7 @@ const EmploymentQuestions = (props) => {
                         )}
                     </TextField>
                 }
-                {(amEmployed === 'employed' && isTech && !isStudent) && 
+                {(amEmployed === 'employed' && isTech && !isStudent && isNotScrum) && 
                     <TextField
                         id="jobTitle-helperText"
                         className={classes.textBox}
